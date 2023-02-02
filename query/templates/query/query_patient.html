@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>query_patient</title>
+</head>
+<body>  
+<h1>简单的查询表单</h1>
+<div style="margin:15%,40%">
+    <form action='/userlist/' method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="id_patient">请输入病人筛选条件</label><br>
+            <input type="text" id="id_patient" name="patientid" placeholder="病人ID" autofocus required />
+            <input type="number" id="age_patient" name="patientage" placeholder="病人年龄" autofocus required />  
+            <input type="text" id="sex_patient" name="patientsex" placeholder="病人性别" autofocus required /> 
+            <input type="number" id="y_in" name="year_in" placeholder="入院年份" autofocus required /> 
+            <input type="number" id="m_in" name="month_in" placeholder="入院月" autofocus required /> 
+            <input type="number" id="d_in" name="date_in" placeholder="入院日" autofocus required /> 
+            <input type="number" id="y_out" name="year_out" placeholder="出院年份" autofocus required /> 
+            <input type="number" id="m_out" name="month_out" placeholder="出院月" autofocus required /> 
+            <input type="number" id="d_out" name="date_out" placeholder="出院日" autofocus required /> 
+            <input type="submit" value="提交"/>
+        </p>
+    </form>
+
+</div>
+{% if error %}
+<h1>{{ error }}</h1>
+{% endif %}
+{% if pid%}
+<table border="1">
+    <tr>
+      <td>PatientId</td>
+      <td>{{ pid }}</td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td>{{ age }}</td>
+    </tr>
+    <tr>
+        <td>CheckDate</td>
+        <td>{{ checkdate }}</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>{{ gender }}</td>
+    </tr>
+</table>
+
+{% endif %}
+</body>
+</html>

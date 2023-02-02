@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增页面</title>
+</head>
+<body>
+ <form action="/add_user/" method="POST">
+        {% csrf_token %}
+        <p style="text-align:center">ID：<input type="text" name="id" /></p>
+        <p style="text-align:center">PatientID：<input type="text" name="pid" /></p>
+        <p style="text-align:center">PatientName：<input type="text" name="pname" /></p>
+        <p style="text-align:center">CheckDate：<input type="datetime" name="checkdate"/> </p>
+        <p style="text-align:center">Gender：<input type="text" name="gender"/></p>
+        <p style="text-align:center">HospitalID：<input type="text" name="hospitalid"/></p>
+        <p style="text-align:center"><input type="submit" value="提交" />
+        <p style="color: red;text-align: center">{{ error_name }}</p>
+</form>
+</body>
+</html>

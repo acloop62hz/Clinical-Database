@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例4</title>
+</head>
+<body>  
+<h1>筛选结果</h1>
+
+
+<table border="1">
+    <tr>
+        <td>PatientId</td>
+        <td>Gender</td>
+        <td>Hospital</td>
+        <td>ExaminationFindings</td>
+        <td>糜烂inFindings</td>
+    </tr>
+    {% for i in pf2 %}
+    <tr>
+        {% for j in i %}
+        <td>{{j}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>

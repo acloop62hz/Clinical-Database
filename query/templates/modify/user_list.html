@@ -1,0 +1,169 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>病例信息</title>
+    <link rel="stylesheet" rel="stylesheet" href="../../../static/plugins/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link href="../../../static/plugins/bootstrap-3.4.1-dist/css/carousel.css" rel="stylesheet">
+    <link href="../../../static/plugins/bootstrap-3.4.1-dist/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">消化道疾病信息管理系统</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/pinfo/">profile</a></li>
+              <li><a href="/logout/">logout</a></li> 
+              <li><a href="#">Help</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+              <input type="text" class="form-control" placeholder="Search...">
+            </form>
+          </div>
+        </div>
+    </nav>
+  
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="/userlist/">病例信息 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/user2/">标注信息<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">用户信息</a></li>
+                    <li><a href="#">图片信息</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="/count_disease/">标注疾病统计</a></li>
+                    <li><a href="/count_anatomy/">标注解剖结构统计</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">病例信息</h1>
+        <div class="row placeholders">
+          <div class="col-xs-6 col-sm-3 placeholder">
+            <img src="../../../static/images/patients.jpg" width="400" height="400" class="img-responsive" alt="Generic placeholder thumbnail">
+            <span class="text-muted">查询/筛选/增删改所有病例信息</span>
+        </div>
+        <div class="col-xs-3 col-sm-8 placeholder">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <h2>筛选条件</h2>
+                            <form action='/userlist/' method="POST">
+                                {% csrf_token %}
+                                <label for="id_patient">请输入病人筛选条件</label><br>
+                                <div class="col-xs-2 col-sm-6 placeholder">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_patient" name="patientid" placeholder="病人ID" aria-describedby="basic-addon1" autofocus required />
+                                        <input type="text" class="form-control" id="sex_patient" name="patientsex" placeholder="病人性别" aria-describedby="basic-addon1" autofocus required /> 
+                                    </div>
+                                    <span class="input-group-addon" id="basic-addon2">年龄筛选：</span>
+                                    <div class="row">
+                                        <div class="col-sm-6"><input type="number" class="form-control" id="age_patient" name="patientage1" placeholder="年龄下界" aria-describedby="basic-addon2" autofocus required /></div><div class="col-sm-6"><input type="number" class="form-control" id="age_patient" name="patientage2" placeholder="年龄上界" aria-describedby="basic-addon2" autofocus required /> </div>
+                                    </div>
+                                    <span class="input-group-addon" id="basic-addon2">时间筛选：起始日期</span>
+                                    <div class="row">
+                                        <div class="col-sm-4"><input type="number" class="form-control" id="y_in" name="year_in" placeholder="入院年" aria-describedby="basic-addon2" autofocus required /> </div><div class="col-sm-4"><input type="number" class="form-control" id="m_in" name="month_in" placeholder="入院月" aria-describedby="basic-addon2" autofocus required /></div><div class="col-sm-4"><input type="number" class="form-control" id="d_in" name="date_in" placeholder="入院日" aria-describedby="basic-addon2" autofocus required /> </div>
+                                    </div>
+                                    <span class="input-group-addon" id="basic-addon2">时间筛选：终止日期</span>
+                                    <div class="row">
+                                        <div class="col-sm-4"><input type="number" class="form-control" id="y_out" name="year_out" placeholder="入院年" aria-describedby="basic-addon2" autofocus required /> </div><div class="col-sm-4"><input type="number" class="form-control" id="m_out" name="month_out" placeholder="入院月" aria-describedby="basic-addon2" autofocus required /></div><div class="col-sm-4"><input type="number" class="form-control" id="d_out" name="date_out" placeholder="入院日" aria-describedby="basic-addon2" autofocus required /> </div>
+                                    </div>
+                                    <br>
+                                    <input type="submit" style="color:#0e0d0d" value="提交"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="span6">
+                            <form action='/redunt/' method="POST">
+                                {% csrf_token %}
+                                <p>
+                                    <input type="submit" value="查找重复条目"/>
+                                </p>
+                            </form>
+                            <form action='/add_user/' >
+                                {% csrf_token %}
+                                <p>
+                                    <input type="submit" value="增加条目"/>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+        <div class="alert alert-info" role="alert">
+            <a href="#" class="alert-link">...</a>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2>结果</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>PatientID</th>
+                            <th>CheckDate</th>
+                            <th>PatientName</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>HospitalID</th>
+                            <th>Modify</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in posts %}
+                        <tr>
+                            <td>{{ i.patientid }}<a href="/update_user/?pid={{ i.id }}&item=patientid">修改</a></td>
+                            <td>{{ i.checkdate }} <a href="/update_user/?pid={{ i.id }}&item=checkdate">修改</a></td>
+                            <td>{{ i.patientname }}<a href="/update_user/?pid={{ i.id }}&item=patientname">修改</a></td>
+                            <td>{{ i.age }} <a href="/update_user/?pid={{ i.id }}&item=age">修改</a></td>
+                            <td>{{ i.gender }}<a href="/update_user/?pid={{ i.id }}&item=gender">修改</a></td>
+                            <td>{{ i.instituteid.institutename }}<a href="/update_user/?pid={{ i.id }}&item=hospitalid">修改</a></td>
+                            <td><a href="/delete_user/?pid={{ i.id }}&ppid={{ i.patientid }}">删除</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        
+            <div>
+                {% if posts.has_previous %}
+                    <a href="/userlist/?page={{ posts.previous_page_number }}">上一页</a>
+                {% endif %}
+                {% if posts.has_next %}
+                    <a href="/userlist/?page={{ posts.next_page_number }}">下一页</a>
+                {% endif %}
+            </div>
+
+        </div>
+        <script src="../../../static/plugins/bootstrap-3.4.1-dist/js/jquery-3.6.0.min.js"></script>
+        <!-- 包括所有已编译的插件 -->
+        <script src="../../../static/plugins/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+
+<center>
+
+</center>
+</body>
+</html>

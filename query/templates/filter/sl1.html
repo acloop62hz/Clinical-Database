@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计</title>
+</head>
+<body>  
+<h1>统计结果</h1>
+
+
+<table border="1">
+    <tr>
+      <td>ID</td>
+      <td>Age</td>
+      <td>CheckDate</td>
+      <td>Gender</td>
+    </tr>
+    {% for i in listp %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.age }}</td>
+      <td>{{ i.checkdate }}</td>
+      <td>{{ i.gender }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+</head>
+<body>
+<center>
+<h1>修改{{ item }}</h1>
+<form action="/update_user/?pid={{ ret.id }}&item={{ item }}" method="POST">
+    {% csrf_token %}
+    {% if item == 'age' %}
+        age：<input type="text" name="age" value="{{ ret.age }}">
+    {% endif %}
+    {% if item == 'patientid' %}
+        patientid：<input type="text" name="age" value="{{ ret.patientid }}">
+    {% endif %}
+    {% if item == 'checkdate' %}
+        checkdate：<input type="text" name="age" value="{{ ret.checkdate }}">
+    {% endif %}
+    {% if item == 'gender' %}
+        gender：<input type="text" name="age" value="{{ ret.gender }}">
+    {% endif %}
+    {% if item == 'patientname' %}
+        patientname：<input type="text" name="age" value="{{ ret.patientname }}">
+    {% endif %}
+    {% if item == 'hospitalid' %}
+        hospitalid：<input type="text" name="age" value="{{ ret.hospitalid }}">
+    {% endif %}
+    <input type="submit">
+</center>
+</body>
+</html>
